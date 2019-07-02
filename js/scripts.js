@@ -444,7 +444,7 @@
   $(parent).append("<" + parent + "vals></" + parent + "vals>");
   for (var key in reqTypes[$("#" + id + " :selected").val()]) {
    if (key != "Name") {
-    $(parent + "vals").append(`<label for="` + parent + `val` + key + `"> ` + reqTypes[$("#" + id + " :selected").val()][key] + `: </label><input type='text' id="` + parent + `val` + key + `">`);
+    $(parent + "vals").append(`<label for="` + parent + `val` + key + `"> ` + reqTypes[$("#" + id + " :selected").val()][key] + `: </label><input class="smallNum" type='text' id="` + parent + `val` + key + `">`);
    }
   }
  }
@@ -469,48 +469,48 @@
    $("subDataContainer" + stepNum).append("<label for='skill" + stepNum + "'> Skill </label><input type='number' style='width:100px' id='skill" + stepNum + "'><br>");
   }
   else if (selectedType == "TR") {
-   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='npc" + stepNum + "'> Trainer Name: </label><input type='text' id='npc" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='list" + stepNum + "'> Spell Id List(comma): </label><input type='text' id='list" + stepNum + "'><br>");
   }
   else if (selectedType == "SH") {
-   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='npc" + stepNum + "'>Innkeeper Name: </label><input type='text' id='npc" + stepNum + "'><br>");
   }
   else if (selectedType == "VB") {
-   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='npc" + stepNum + "'>Vendor Name: </label><input type='text' id='npc" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='list" + stepNum + "'> Buy List(ItemID,Quanity): </label><input type='text' id='list" + stepNum + "'><br>");
   }
   else if (selectedType == "IR") {
-   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='npc" + stepNum + "'>NPC Name: </label><input type='text' id='npc" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='txt" + stepNum + "'>Text: </label><input type='text' id='txt" + stepNum + "'><br>");
   }
   else if (selectedType == "DT") {
-   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
   }
   else if (selectedType == "FP") {
-   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='npc" + stepNum + "'> Flight Master Name: </label><input type='text' id='npc" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='dest" + stepNum + "'>Destination: </label><input type='text' id='dest" + stepNum + "'>");
   }
   else if (selectedType == "TA") {
-   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+   $("subDataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+   $("subDataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
    $("subDataContainer" + stepNum).append("<label for='npc" + stepNum + "'> Transport Name/Type: </label><input type='text' id='npc" + stepNum + "'>");
   }
  }
@@ -528,29 +528,29 @@
   else {
    if (selectedType == "AQ" || selectedType == "CQ") {
     $("dataContainer" + stepNum).append("<label for='qId" + stepNum + "'> QuestId </label><input type='number' style='width:100px' id='qId" + stepNum + "'><br>");
-    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
     $("dataContainer" + stepNum).append("<label for='npc" + stepNum + "'> Quest Giver: </label><input type='text' id='npc" + stepNum + "'>");
    }
    else if (selectedType == "FQ") {
     $("dataContainer" + stepNum).append("<label for='qId" + stepNum + "'> QuestId </label><input type='number' style='width:100px' id='qId" + stepNum + "'><br>");
-    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
 
    }
    else if (selectedType == "PQ") {
     $("dataContainer" + stepNum).append("<label for='qId" + stepNum + "'> QuestId </label><input type='number' style='width:100px' id='qId" + stepNum + "'><br>");
-    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
     $("dataContainer" + stepNum).append("<label for='list" + stepNum + "'> Objectives: </label><input type='text' id='list" + stepNum + "'>");
    }
    else if (selectedType == "GT") {
-    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' style='width:40px' id='locX" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' style='width:40px' id='locY" + stepNum + "'>");
-    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' style='width:40px' id='range" + stepNum + "'><br>");
+    $("dataContainer" + stepNum).append("<label for='locX" + stepNum + "'> Location x: </label><input type='number' class='smallNum' id='locX" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='locY" + stepNum + "'> y: </label><input type='number' class='smallNum' id='locY" + stepNum + "'>");
+    $("dataContainer" + stepNum).append("<label for='range" + stepNum + "'> Range </label><input type='number' class='smallNum' id='range" + stepNum + "'><br>");
    }
    else if (selectedType == "NO") {
     $("dataContainer" + stepNum).append("<label for='txt" + stepNum + "'> Note: </label><input type='text' id='txt" + stepNum + "'><br>");

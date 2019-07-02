@@ -82,3 +82,6 @@ stepdata {
 .default-color{
      background-color: #777571 !important;
 }
+.smallNum{
+    width:60px;
+}
