@@ -218,6 +218,14 @@
   reqTypes["IFF"]["Name"] = "Inventory is Full";
  }
 
+ var dropdown = ``
+
+ for (var key in reqTypes) {
+  if (key.length == 3) {
+   dropdown += `<option value="` + key + `">` + reqTypes[key]["Name"] + `</option>`;
+  }
+ }
+
  var stepTypes = [];
  stepTypes["SL"] = "Select Type";
  stepTypes["AQ"] = "Acquire Quest";
@@ -352,16 +360,16 @@
    "class": "btn btn-danger removeReqBtn btn-md",
    html: "-"
   });
-  var dropdown = $("<select />", {
+  var selector = $("<select />", {
    "class": "reqSelect",
    id: "step" + index + "req" + reqCount + "Select",
   });
   $(reqContainer).append(removebtn);
-  $(reqContainer).append(dropdown);
+  $(reqContainer).append(selector);
   $("step" + index + "ReqContainer").append(reqContainer);
   $("#step" + index + "req" + reqCount + "removeReqBtn").before("<br>");
-  populateReqSelect();
   $("#step" + index + "ReqCount").html(parseInt(reqCount, 10) + 1);
+  $("#step" + index + "req" + reqCount + "Select").append(dropdown);
  }
 
  function RemoveReq(id) {
@@ -413,19 +421,6 @@
   else {
    $("#Card" + index).addClass("default-color");
   }
- }
-
- function populateReqSelect() {
-  $(".reqSelect").each(function() {
-   if ($(this).children('option').length == 0) {
-    for (var key in reqTypes) {
-     if (key.length == 3) {
-      $(this).append(`<option value="` + key + `">` + reqTypes[key]["Name"] + `</option>`);
-     }
-    }
-   }
-  });
-
  }
 
  function PopulateTypeSelect() {
