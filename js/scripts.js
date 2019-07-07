@@ -423,16 +423,6 @@
   }
  }
 
- function PopulateTypeSelect() {
-  $(".stepTypeSelect").each(function() {
-   if ($(this).children('option').length == 0) {
-    for (var key in stepTypes) {
-     $(this).append(`<option value="` + key + `">` + stepTypes[key] + `</option>`);
-    }
-   }
-  });
- }
-
  function AddValueFields(id) {
   var parent = id.replace("Select", "");
   $(parent + "vals").remove();
@@ -850,7 +840,6 @@
    $("#Card" + i).append(cardBody);
    $("#Card" + i + "Body").append(reqs);
    $("#Card" + i + "Body").append(data);
-   PopulateTypeSelect();
    LoadStepData(i);
    if (steps[i].show == true) {
     $("#Card" + i + "Body").addClass("show");
