@@ -840,6 +840,9 @@
    $("#Card" + i).append(cardBody);
    $("#Card" + i + "Body").append(reqs);
    $("#Card" + i + "Body").append(data);
+   for (var key in stepTypes) {
+     $("#step" + i + "TypeSelect").append(`<option value="` + key + `">` + stepTypes[key] + `</option>`);
+    }
    LoadStepData(i);
    if (steps[i].show == true) {
     $("#Card" + i + "Body").addClass("show");
