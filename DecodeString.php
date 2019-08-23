@@ -8,7 +8,7 @@ use SoftCreatR\WeakAuras\Decoder;
 
 // Encoded WeakAuras string
 $encoded =  $_GET['input'];
-
+echo $encoded;
 // Perform decode
 $decoded = Decoder::decodeAura($encoded);
 
