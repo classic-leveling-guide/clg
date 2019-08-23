@@ -8,18 +8,7 @@
  };
 
  function DecompressString(str) {
-$.ajax({
-         type: "GET",
-         url: "DecodeString.php?",
-         dataType: "json",
-         data: {
-          "input": str
-         },
-         success: function(data, status) {
-          console.log(data);
-             return data;
-         }
-     });
+ return fengari.load(`return clgDecompress('`+str+`')`)()
  
 
  };

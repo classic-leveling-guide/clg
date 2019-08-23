@@ -2073,6 +2073,7 @@ end
 local function CreateReader(input_string)
 	local input = input_string
 	local input_strlen = #input_string
+	print(input.." "..input_strlen)
 	local input_next_byte_pos = 1
 	local cache_bitlen = 0
 	local cache = 0
@@ -2577,7 +2578,7 @@ end
 -- @return the decompressed string if succeeds. nil if fails.
 local function Inflate(state)
 	local ReadBits = state.ReadBits
-
+print(ReadBits)
 	local is_last_block
 	while not is_last_block do
 		is_last_block = (ReadBits(1) == 1)
@@ -3321,6 +3322,22 @@ LibDeflate.internals = {
 	_6bit_to_byte = _6bit_to_byte,
 	InternalClearCache = InternalClearCache,
 }
+
+local example_input = "Hello from hell which im in"
+local compress_deflate = LibDeflate:CompressDeflate(example_input)
+
+-- decompress
+local decompress_deflate = LibDeflate:DecompressDeflate(compress_deflate)
+-- Check if the first return value of DecompressXXXX is non-nil to know if the
+-- decompression succeeds.
+if decompress_deflate == nil then
+	error("Decompression fails.")
+else
+	-- Decompression succeeds.
+	print(decompress_deflate)
+end
+
+
 
 
 return LibDeflate

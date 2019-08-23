@@ -992,7 +992,7 @@
 
  function StringToArray() {
   var stepPattern = /\[(\d*)\]=\[{(.*?)},{(.*?)}\]/gm;
-  var inputString = DecompressString($("#stringInput").val());
+  var inputString = $("#stringInput").val();
   console.log($("#stringInput").val());
   console.log(inputString);
   inputString = inputString.replace(/\\/g,"");
