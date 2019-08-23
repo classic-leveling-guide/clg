@@ -135,7 +135,7 @@ final class Decoder
             return $l;
         } elseif ($compressed[0] != 3) {
             throw new \Exception(
-                'Unknown compression codec (' . $a[0] . ')'
+                'Unknown compression codec (' . $compressed[0] . ')'
             );
         }
 
