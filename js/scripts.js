@@ -1,6 +1,7 @@
  /*global $ */
  var steps = [];
  var reqTypes = [];
+
  reqTypes["SLE"] = [];
  reqTypes["SLE"]["Name"] = "Select Type";
  if (true) {
@@ -75,7 +76,7 @@
   reqTypes["PEL"]["Name"] = "Player level less than or equal to";
   reqTypes["PEG"]["Name"] = "Player level greater than or equal to";
   reqTypes["INI"]["Name"] = "Item not in inventory";
-  reqTypes["III"]["Name"] = "Item is inventory";
+  reqTypes["III"]["Name"] = "Item is in inventory";
   reqTypes["IAE"]["Name"] = "Item Quantity Equals";
   reqTypes["IAG"]["Name"] = "Item quantity strictly Greater than";
   reqTypes["IAL"]["Name"] = "Item quantity strictly less than";
@@ -218,7 +219,7 @@
   reqTypes["IFF"]["Name"] = "Inventory is Full";
  }
 
- var dropdown = ``
+ var dropdown = ``;
 
  for (var key in reqTypes) {
   if (key.length == 3) {
@@ -254,7 +255,13 @@
 
  //Buttons
  $("#stringDecodeBtn").on("click", function() {
+
   StringToArray();
+ });
+ $("#stringCopyBtn").on("click", function() {
+  var copyText = document.getElementById("stringInput");
+  copyText.select();
+  document.execCommand("copy");
  });
 
  $("#stringEncodeBtn").on("click", function() {
@@ -276,6 +283,19 @@
   AddReq(parseInt($(this).attr("id").replace("addReqStep", ""), 10));
 
  });
+ $(document).on('click', '.toggleBtn', function() {
+
+  if ($(this).html() == "Open") {
+   if ($("#" + $(this).attr("id").replace("Toggle", "")).hasClass("Loaded") == false) {
+    LoadStepData($(this).attr("id").replace("Card", "").replace("Toggle", ""));
+   }
+   $(this).html("Collapse");
+  }
+  else {
+   $(this).html("Open");
+  }
+
+ });
  $(document).on('click', '.removeReqBtn', function() {
   RemoveReq($(this).attr("id"));
 
@@ -294,7 +314,7 @@
  });
  $(document).on('change', '.stepTypeSelect', function() {
   HandleDataType($(this).attr("id"));
-  ChangeCardColor($(this).attr("id"));
+  ChangeCardColor($(this).attr("id").replace("step", "").replace("TypeSelect", ""), $("#"+$(this).attr("id")).val());
   ChangeCardHeader($(this).attr("id").replace("step", "").replace("TypeSelect", ""));
  });
  $(document).on('change', '.subtypeSelect', function() {
@@ -345,6 +365,7 @@
  function InsertStep(index) {
   StoreSteps();
   var step = new Object();
+  step.show = true;
   steps.splice(index, 0, step);
   DisplaySteps();
  }
@@ -392,9 +413,13 @@
   DisplaySteps();
  }
 
- function ChangeCardColor(index) {
-  index = index.replace("step", "").replace("TypeSelect", "");
-  var type = $("#step" + index + "TypeSelect").val();
+ function ChangeCardColor(index, type) {
+  if(type == undefined){
+   return;
+  }
+  console.log("Change color called with index=" + index + " and type=" + type);
+
+
   var classes = "card mx-auto text-white bg-primary mb-3";
 
   $("#Card" + index).removeClass();
@@ -569,120 +594,120 @@
 
  function StoreSteps() {
   for (var s in steps) {
-   var step = new Object();
-   steps[s] = step;
    if ($("#Card" + s + "Body").hasClass("show")) {
+    var step = new Object();
+    steps[s] = step;
     steps[s].show = true;
+    steps[s].type = $("#step" + s + "TypeSelect :selected").val();
+    if (steps[s].type == "AQ" || steps[s].type == "CQ") {
+     steps[s].qId = $("#qId" + s).val();
+     steps[s].locX = $("#locX" + s).val();
+     steps[s].locY = $("#locY" + s).val();
+     steps[s].range = $("#range" + s).val();
+     steps[s].npc = $("#npc" + s).val();
+    }
+    else if (steps[s].type == "FQ") {
+     steps[s].qId = $("#qId" + s).val();
+     steps[s].locX = $("#locX" + s).val();
+     steps[s].locY = $("#locY" + s).val();
+     steps[s].range = $("#range" + s).val();
+    }
+    else if (steps[s].type == "PQ") {
+     steps[s].qId = $("#qId" + s).val();
+     steps[s].locX = $("#locX" + s).val();
+     steps[s].locY = $("#locY" + s).val();
+     steps[s].range = $("#range" + s).val();
+     steps[s].list = $("#list" + s).val();
+    }
+    else if (steps[s].type == "GT") {
+     steps[s].locX = $("#locX" + s).val();
+     steps[s].locY = $("#locY" + s).val();
+     steps[s].range = $("#range" + s).val();
+    }
+    else if (steps[s].type == "NO") {
+     steps[s].text = $("#txt" + s).val();
+    }
+    else if (steps[s].type == "IT") {
+     steps[s].subType = $("#step" + s + "TypeSelectSub :selected").val();
+     if (steps[s].subType == "TR") {
+      steps[s].locX = $("#locX" + s).val();
+      steps[s].locY = $("#locY" + s).val();
+      steps[s].range = $("#range" + s).val();
+      steps[s].npc = $("#npc" + s).val();
+      steps[s].list = $("#list" + s).val();
+     }
+     else if (steps[s].subType == "SH") {
+      steps[s].locX = $("#locX" + s).val();
+      steps[s].locY = $("#locY" + s).val();
+      steps[s].range = $("#range" + s).val();
+      steps[s].npc = $("#npc" + s).val();
+     }
+     else if (steps[s].subType == "IR") {
+      steps[s].locX = $("#locX" + s).val();
+      steps[s].locY = $("#locY" + s).val();
+      steps[s].range = $("#range" + s).val();
+      steps[s].npc = $("#npc" + s).val();
+      steps[s].text = $("#txt" + s).val();
+     }
+     else if (steps[s].subType == "VB") {
+      steps[s].locX = $("#locX" + s).val();
+      steps[s].locY = $("#locY" + s).val();
+      steps[s].range = $("#range" + s).val();
+      steps[s].npc = $("#npc" + s).val();
+      steps[s].list = $("#list" + s).val();
+     }
+    }
+    else if (steps[s].type == "FT") {
+     steps[s].subType = $("#step" + s + "TypeSelectSub :selected").val();
+     if (steps[s].subType == "FP") {
+      steps[s].locX = $("#locX" + s).val();
+      steps[s].locY = $("#locY" + s).val();
+      steps[s].range = $("#range" + s).val();
+      steps[s].npc = $("#npc" + s).val();
+      steps[s].dest = $("#dest" + s).val();
+     }
+     else if (steps[s].subType == "DT") {
+      steps[s].locX = $("#locX" + s).val();
+      steps[s].locY = $("#locY" + s).val();
+      steps[s].range = $("#range" + s).val();
+     }
+     else if (steps[s].subType == "TA") {
+      steps[s].locX = $("#locX" + s).val();
+      steps[s].locY = $("#locY" + s).val();
+      steps[s].range = $("#range" + s).val();
+      steps[s].npc = $("#npc" + s).val();
+     }
+    }
+    else if (steps[s].type == "GR") {
+     steps[s].subType = $("#step" + s + "TypeSelectSub :selected").val();
+     if (steps[s].subType == "GL") {
+      steps[s].level = $("#lvl" + s).val();
+     }
+     else if (steps[s].subType == "GM") {
+      steps[s].money = $("#mon" + s).val();
+     }
+     else if (steps[s].subType == "GX") {
+      steps[s].xp = $("#xp" + s).val();
+     }
+     else if (steps[s].subType == "GP") {
+      steps[s].prof = $("#prof" + s).val();
+      steps[s].skill = $("#skill" + s).val();
+     }
+    }
+    steps[s].reqCount = $("#step" + s + "ReqCount").html();
+    steps[s].reqs = [];
+    for (var i = 0; i < steps[s].reqCount; i++) {
+     var reqtype = $("#step" + s + "req" + i + "Select :selected").val();
+     steps[s].reqs[i] = [];
+     var valCount = reqTypes[reqtype].length;
+     steps[s].reqs[i]["type"] = reqtype;
+     for (var j = 0; j < valCount; j++) {
+      steps[s].reqs[i][j] = $("#step" + s + "req" + i + "val" + j).val();
+     }
+    }
    }
    else {
     steps[s].show = false;
-   }
-   steps[s].type = $("#step" + s + "TypeSelect :selected").val();
-   if (steps[s].type == "AQ" || steps[s].type == "CQ") {
-    steps[s].qId = $("#qId" + s).val();
-    steps[s].locX = $("#locX" + s).val();
-    steps[s].locY = $("#locY" + s).val();
-    steps[s].range = $("#range" + s).val();
-    steps[s].npc = $("#npc" + s).val();
-   }
-   else if (steps[s].type == "FQ") {
-    steps[s].qId = $("#qId" + s).val();
-    steps[s].locX = $("#locX" + s).val();
-    steps[s].locY = $("#locY" + s).val();
-    steps[s].range = $("#range" + s).val();
-   }
-   else if (steps[s].type == "PQ") {
-    steps[s].qId = $("#qId" + s).val();
-    steps[s].locX = $("#locX" + s).val();
-    steps[s].locY = $("#locY" + s).val();
-    steps[s].range = $("#range" + s).val();
-    steps[s].list = $("#list" + s).val();
-   }
-   else if (steps[s].type == "GT") {
-    steps[s].locX = $("#locX" + s).val();
-    steps[s].locY = $("#locY" + s).val();
-    steps[s].range = $("#range" + s).val();
-   }
-   else if (steps[s].type == "NO") {
-    steps[s].text = $("#txt" + s).val();
-   }
-   else if (steps[s].type == "IT") {
-    steps[s].subType = $("#step" + s + "TypeSelectSub :selected").val();
-    if (steps[s].subType == "TR") {
-     steps[s].locX = $("#locX" + s).val();
-     steps[s].locY = $("#locY" + s).val();
-     steps[s].range = $("#range" + s).val();
-     steps[s].npc = $("#npc" + s).val();
-     steps[s].list = $("#list" + s).val();
-    }
-    else if (steps[s].subType == "SH") {
-     steps[s].locX = $("#locX" + s).val();
-     steps[s].locY = $("#locY" + s).val();
-     steps[s].range = $("#range" + s).val();
-     steps[s].npc = $("#npc" + s).val();
-    }
-    else if (steps[s].subType == "IR") {
-     steps[s].locX = $("#locX" + s).val();
-     steps[s].locY = $("#locY" + s).val();
-     steps[s].range = $("#range" + s).val();
-     steps[s].npc = $("#npc" + s).val();
-     steps[s].text = $("#txt" + s).val();
-    }
-    else if (steps[s].subType == "VB") {
-     steps[s].locX = $("#locX" + s).val();
-     steps[s].locY = $("#locY" + s).val();
-     steps[s].range = $("#range" + s).val();
-     steps[s].npc = $("#npc" + s).val();
-     steps[s].list = $("#list" + s).val();
-    }
-   }
-   else if (steps[s].type == "FT") {
-    steps[s].subType = $("#step" + s + "TypeSelectSub :selected").val();
-    if (steps[s].subType == "FP") {
-     steps[s].locX = $("#locX" + s).val();
-     steps[s].locY = $("#locY" + s).val();
-     steps[s].range = $("#range" + s).val();
-     steps[s].npc = $("#npc" + s).val();
-     steps[s].dest = $("#dest" + s).val();
-    }
-    else if (steps[s].subType == "DT") {
-     steps[s].locX = $("#locX" + s).val();
-     steps[s].locY = $("#locY" + s).val();
-     steps[s].range = $("#range" + s).val();
-    }
-    else if (steps[s].subType == "TA") {
-     steps[s].locX = $("#locX" + s).val();
-     steps[s].locY = $("#locY" + s).val();
-     steps[s].range = $("#range" + s).val();
-     steps[s].npc = $("#npc" + s).val();
-    }
-   }
-   else if (steps[s].type == "GR") {
-    steps[s].subType = $("#step" + s + "TypeSelectSub :selected").val();
-    if (steps[s].subType == "GL") {
-     steps[s].level = $("#lvl" + s).val();
-    }
-    else if (steps[s].subType == "GM") {
-     steps[s].money = $("#mon" + s).val();
-    }
-    else if (steps[s].subType == "GX") {
-     steps[s].xp = $("#xp" + s).val();
-    }
-    else if (steps[s].subType == "GP") {
-     steps[s].prof = $("#prof" + s).val();
-     steps[s].skill = $("#skill" + s).val();
-    }
-   }
-   steps[s].reqCount = $("#step" + s + "ReqCount").html();
-   steps[s].reqs = [];
-   for (var i = 0; i < steps[s].reqCount; i++) {
-    var reqtype = $("#step" + s + "req" + i + "Select :selected").val();
-    steps[s].reqs[i] = [];
-    var valCount = reqTypes[reqtype].length;
-    steps[s].reqs[i]["type"] = reqtype;
-    for (var j = 0; j < valCount; j++) {
-     steps[s].reqs[i][j] = $("#step" + s + "req" + i + "val" + j).val();
-    }
    }
   }
  }
@@ -806,6 +831,7 @@
     }
    }
   }
+  $("#Card" + index).addClass("Loaded");
  }
 
  function DisplaySteps() {
@@ -819,7 +845,7 @@
     id: "Card" + i + "Header",
     "class": "card-header",
     html: `<span>
-          <button class='btn btn-success' type='button' data-toggle='collapse' data-target='#Card` + i + `Body'>Open</button>  
+          <button class='btn btn-success toggleBtn' type='button' id='Card` + i + `Toggle' data-toggle='collapse' data-target='#Card` + i + `Body'>Open</button>  
           Step ` + (i + 1) +
      `</span><span id='step` + i + `info'></span><span><button class='upStepBtn btn btn-secondary' type='button' id='upStep` + i + `'>Up</button>
           <button class='downStepBtn btn btn-secondary' type='button' id='downStep` + i + `'>Down</button>
@@ -841,15 +867,23 @@
    $("#Card" + i + "Body").append(reqs);
    $("#Card" + i + "Body").append(data);
    for (var key in stepTypes) {
-     $("#step" + i + "TypeSelect").append(`<option value="` + key + `">` + stepTypes[key] + `</option>`);
-    }
-   LoadStepData(i);
+    $("#step" + i + "TypeSelect").append(`<option value="` + key + `">` + stepTypes[key] + `</option>`);
+   }
+
    if (steps[i].show == true) {
+    $(`#Card` + i + `Toggle`).html("Collapse");
     $("#Card" + i + "Body").addClass("show");
+    LoadStepData(i);
+   }
+   else {
+    PreloadHeader(i, steps[i].type, steps[i].subType);
+    ChangeCardColor(i, steps[i].type);
    }
   }
   $("#upStep0").remove();
   $("#downStep" + (steps.length - 1)).remove();
+
+
  }
 
  function ArrayToString() {
@@ -929,7 +963,13 @@
     //its select and should be discarded
    }
    var reqString = "{";
-   for (var r in steps[i].reqs) {
+
+   if(steps[i].reqs.length == 0){
+   stepString = stepString.slice(0, -1) + `},`;
+   outputString += stepString + `{}],`;
+   outputString = outputString.slice(0, -1);
+   } else {
+    for (var r in steps[i].reqs) {
     var capsule = `("` + steps[i].reqs[r]["type"] + `",`;
     for (var j = 0; j < steps[i].reqs[r].length - 1; j++) {
      capsule += steps[i].reqs[r][j] + `,`;
@@ -940,15 +980,23 @@
    reqString = reqString.slice(0, -1) + "}";
    stepString = stepString.slice(0, -1) + `},`;
    outputString += stepString + reqString + `],`;
-
+   outputString = outputString.slice(0, -1);
   }
-  outputString = outputString.slice(0, -1);
-  $("#stringInput").val(outputString);
+  
+  
+   }
+   outputString = outputString.replace(/'/g, "\\'");
+  console.log(outputString);
+  $("#stringInput").val(CompressString(outputString));
  }
 
  function StringToArray() {
   var stepPattern = /\[(\d*)\]=\[{(.*?)},{(.*?)}\]/gm;
-  var inputString = $("#stringInput").val();
+  var inputString = DecompressString($("#stringInput").val());
+  console.log($("#stringInput").val());
+  console.log(inputString);
+  inputString = inputString.replace(/\\/g,"");
+  console.log(inputString);
   var matches = [];
   var m;
   while ((m = stepPattern.exec(inputString)) !== null) {
@@ -961,6 +1009,7 @@
    ExtractStepData(m[1], m[2]);
    ExtractStepReqs(m[1], m[3]);
   });
+
   DisplaySteps();
  }
 
@@ -1105,12 +1154,36 @@
 
  function CollapseAll() {
 
-  $(".card-body").removeClass("show");
 
+  $(".card-body").each(function() {
+   $(this).removeClass("show");
+   var buttonId = $(this).attr("id").replace("Body", "");
+   $("#" + buttonId + "Toggle").html("Open");
+  });
  }
 
  function ShowAll() {
   $(".card-body").addClass("show");
+ }
+
+ function PreloadHeader(index, steptype, subtype) {
+  var headerString = "";
+
+  if (steptype == "IT" || steptype == "FT" || steptype == "GR") {
+   if (subtype == "SL") {
+    headerString += stepTypes[steptype];
+   }
+   else {
+    headerString += subTypes[subtype];
+   }
+  }
+  else {
+   headerString += stepTypes[steptype];
+  }
+if(headerString ==undefined){
+ headerString = "";
+}
+  $("#step" + index + "info").html(headerString);
  }
 
  function ChangeCardHeader(index) {
@@ -1129,7 +1202,9 @@
   else {
    headerString += stepTypes[steptype];
   }
-
+if(headerString ==undefined){
+ headerString = "";
+}
   $("#step" + index + "info").html(headerString);
  }
  

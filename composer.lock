@@ -1,0 +1,65 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "8e2567fe0ef6c83248462bea00ffb3b4",
+    "packages": [
+        {
+            "name": "softcreatr/weakauras-decoder",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SoftCreatR/WeakAuras-Decoder.git",
+                "reference": "0f09bcaad70fef4d7c70a3c5c1218295348ca249"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SoftCreatR/WeakAuras-Decoder/zipball/0f09bcaad70fef4d7c70a3c5c1218295348ca249",
+                "reference": "0f09bcaad70fef4d7c70a3c5c1218295348ca249",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "SoftCreatR": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha Greuel",
+                    "email": "sascha@softcreatr.de"
+                },
+                {
+                    "name": "Sebastian Zimmer",
+                    "email": "morik@softcreatr.de"
+                }
+            ],
+            "description": "WeakAuras Decoder",
+            "homepage": "https://www.softcreatr.de",
+            "keywords": [
+                "SoftCreatR",
+                "WeakAuras",
+                "world of warcraft",
+                "wow"
+            ],
+            "time": "2017-12-29T03:54:13+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

@@ -1,3 +1,6 @@
 {
     
+    "require": {
+        "softcreatr/weakauras-decoder": "^1.0"
+    }
 }
