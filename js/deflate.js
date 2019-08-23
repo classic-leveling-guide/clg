@@ -10,7 +10,7 @@
  function DecompressString(str) {
 $.ajax({
          type: "GET",
-         url: "api/DecodeString.php?",
+         url: "DecodeString.php?",
          dataType: "json",
          data: {
           "input": str
