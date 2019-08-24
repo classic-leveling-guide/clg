@@ -367,6 +367,7 @@
   var step = new Object();
   step.show = true;
   steps.splice(index, 0, step);
+  StoreSteps();
   DisplaySteps();
  }
 
