@@ -417,7 +417,6 @@
   if(type == undefined){
    return;
   }
-  console.log("Change color called with index=" + index + " and type=" + type);
 
 
   var classes = "card mx-auto text-white bg-primary mb-3";
@@ -986,17 +985,14 @@
   
    }
    outputString = outputString.replace(/'/g, "\\'");
-  console.log(outputString);
+  
   $("#stringInput").val(CompressString(outputString));
  }
 
  function StringToArray() {
   var stepPattern = /\[(\d*)\]=\[{(.*?)},{(.*?)}\]/gm;
   var inputString = $("#stringInput").val();
-  console.log($("#stringInput").val());
-  console.log(inputString);
   inputString = inputString.replace(/\\/g,"");
-  console.log(inputString);
   var matches = [];
   var m;
   while ((m = stepPattern.exec(inputString)) !== null) {
