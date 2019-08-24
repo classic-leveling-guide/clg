@@ -963,7 +963,7 @@
    }
    var reqString = "{";
 
-   if(steps[i].reqs.length == 0){
+   if(steps[i].reqs == undefined || steps[i].reqs.length == 0){
    stepString = stepString.slice(0, -1) + `},`;
    outputString += stepString + `{}],`;
    outputString = outputString.slice(0, -1);
